@@ -1,166 +1,48 @@
-import React, {useState} from 'react';
-import {View, Text, Image, TouchableOpacity, TextInput} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+import React from 'react';
+import {UserData} from '../utils/userData';
 import Feather from 'react-native-vector-icons/Feather';
+import Octicons from 'react-native-vector-icons/Octicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Ionic from 'react-native-vector-icons/Ionicons';
-import Entypo from 'react-native-vector-icons/Entypo';
+
+const screenWidth = Dimensions.get('window').width;
 
 const Post = () => {
-  const postInfo = [
-    {
-      postTitle: 'amit_kumar',
-      postPersonImage: require('../storage/images/userProfile.png'),
-      postImage: require('../storage/images/post1.jpeg'),
-      likes: 765,
-      isLiked: false,
-    },
-    {
-      postTitle: 'nishant123',
-      postPersonImage: require('../storage/images/profile5.jpeg'),
-      postImage: require('../storage/images/post2.jpeg'),
-      likes: 345,
-      isLiked: false,
-    },
-    {
-      postTitle: 'ankit_001',
-      postPersonImage: require('../storage/images/profile4.jpeg'),
-      postImage: require('../storage/images/post3.jpeg'),
-      likes: 734,
-      isLiked: false,
-    },
-    {
-      postTitle: 'travel_hunts',
-      postPersonImage: require('../storage/images/profile3.jpeg'),
-      postImage: require('../storage/images/post4.jpeg'),
-      likes: 875,
-      isLiked: false,
-    },
-  ];
-
   return (
-    <View>
-      {postInfo.map((data, index) => {
-        const [like, setLike] = useState(data.isLiked);
+    <View style={{marginTop: 2}}>
+      {UserData.map(item => {
         return (
-          <View
-            key={index}
-            style={{
-              paddingBottom: 10,
-              borderBottomColor: 'gray',
-              borderBottomWidth: 0.1,
-            }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: 15,
-              }}>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Image
-                  source={data.postPersonImage}
-                  style={{width: 40, height: 40, borderRadius: 100}}
-                />
-                <View style={{paddingLeft: 5}}>
-                  <Text style={{fontSize: 15, fontWeight: 'bold'}}>
-                    {data.postTitle}
-                  </Text>
-                </View>
-              </View>
-              <Feather name="more-vertical" style={{fontSize: 20}} />
+          <View key={item.id} style={{marginTop: 10, marginBottom: 10}}>
+            <View style={styles.profileContainer}>
+              <Image style={styles.profileAvatar} source={item.profile} />
+              <Text style={styles.profileUsername}>{item.name}</Text>
             </View>
-            <View
-              style={{
-                position: 'relative',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Image
-                source={data.postImage}
-                style={{width: '100%', height: 400}}
-              />
+            <View>
+              <Image style={styles.postImage} source={item.post.image} />
             </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                paddingHorizontal: 12,
-                paddingVertical: 15,
-              }}>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <TouchableOpacity onPress={() => setLike(!like)}>
-                  <AntDesign
-                    name={like ? 'heart' : 'hearto'}
-                    style={{
-                      paddingRight: 10,
-                      fontSize: 20,
-                      color: like ? 'red' : 'black',
-                    }}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Ionic
-                    name="ios-chatbubble-outline"
-                    style={{fontSize: 20, paddingRight: 10}}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Feather name="navigation" style={{fontSize: 20}} />
-                </TouchableOpacity>
-              </View>
-              <Feather name="bookmark" style={{fontSize: 20}} />
+            <View style={styles.postActionButtons}>
+              <TouchableOpacity>
+                <AntDesign name="hearto" style={styles.iconButton} />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Octicons name="comment" style={styles.iconButton} />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Feather name="send" style={styles.iconButton} />
+              </TouchableOpacity>
             </View>
-            <View style={{paddingHorizontal: 15}}>
-              <Text>
-                {/* Liked by {like ? 'you and' : ''}{' '} */}
-                {like ? data.likes + 1 : data.likes} likes
-              </Text>
-              <Text
-                style={{
-                  fontWeight: '700',
-                  fontSize: 14,
-                  paddingVertical: 2,
-                }}>
-                {data.postTitle} If enjoy the video ! Please like and Subscribe
-                :)
-              </Text>
-              <Text style={{opacity: 0.4, paddingVertical: 2}}>
-                View all comments
-              </Text>
-              <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                  <Image
-                    source={data.postPersonImage}
-                    style={{
-                      width: 25,
-                      height: 25,
-                      borderRadius: 100,
-                      backgroundColor: 'orange',
-                      marginRight: 10,
-                    }}
-                  />
-                  <TextInput
-                    placeholder="Add a comment "
-                    style={{opacity: 0.5}}
-                  />
-                </View>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                  <Entypo
-                    name="emoji-happy"
-                    style={{fontSize: 15, color: 'lightgreen', marginRight: 10}}
-                  />
-                  <Entypo
-                    name="emoji-neutral"
-                    style={{fontSize: 15, color: 'pink', marginRight: 10}}
-                  />
-                  <Entypo
-                    name="emoji-sad"
-                    style={{fontSize: 15, color: 'red'}}
-                  />
-                </View>
-              </View>
+            <Text style={styles.postLikes}>{item.post.like} likes</Text>
+            <View style={styles.captionContainer}>
+              <Text style={styles.captionText}>{item.name} </Text>
+              <Text style={{color: 'black'}}>{item.post.caption}</Text>
             </View>
           </View>
         );
@@ -170,3 +52,42 @@ const Post = () => {
 };
 
 export default Post;
+
+const styles = StyleSheet.create({
+  profileContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    marginBottom: 8,
+  },
+  profileAvatar: {height: 30, width: 30, borderRadius: 15},
+  profileUsername: {
+    paddingLeft: 10,
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'black',
+  },
+  postImage: {height: 400, width: screenWidth},
+  postActionButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 5,
+    height: 30,
+    width: '38%',
+    justifyContent: 'space-around',
+  },
+  postLikes: {
+    marginLeft: 13,
+    marginTop: 4,
+    fontSize: 16,
+    fontWeight: '600',
+    color: 'black',
+  },
+  captionContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: 13,
+    alignItems: 'center',
+  },
+  captionText: {color: 'black', fontSize: 16, fontWeight: '500'},
+  iconButton: {fontSize: 24},
+});
