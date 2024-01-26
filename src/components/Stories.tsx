@@ -1,122 +1,41 @@
+/* eslint-disable react-native/no-inline-styles */
+import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import React from 'react';
-import {View, Text, ScrollView, TouchableOpacity, Image} from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
+import {UserData} from '../utils/userData';
 import {useNavigation} from '@react-navigation/native';
 
 const Stories = () => {
   const navigation = useNavigation();
-
-  const storyInfo = [
-    {
-      id: 1,
-      name: 'Your Story',
-      image: require('../storage/images/userProfile.png'),
-    },
-    {
-      id: 0,
-      name: 'Ram_Charan',
-      image: require('../storage/images/profile1.jpeg'),
-    },
-    {
-      id: 0,
-      name: 'Tom',
-      image: require('../storage/images/profile2.jpeg'),
-    },
-    {
-      id: 0,
-      name: 'The_Groot',
-      image: require('../storage/images/profile3.jpeg'),
-    },
-    ,
-    {
-      id: 0,
-      name: 'loverland',
-      image: require('../storage/images/profile4.jpeg'),
-    },
-    ,
-    {
-      id: 0,
-      name: 'chillhouse',
-      image: require('../storage/images/profile5.jpeg'),
-    },
-  ];
-
   return (
-    <ScrollView
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
-      style={{paddingVertical: 20}}>
-      {storyInfo.map((data, index) => {
+    <View style={styles.container}>
+      {UserData.map(item => {
+        console.log(item);
         return (
-          <TouchableOpacity
-            key={index}
-            onPress={() =>
-              navigation.push('Status', {
-                name: data.name,
-                image: data.image,
-              })
-            }>
-            <View
-              style={{
-                flexDirection: 'column',
-                paddingHorizontal: 8,
-                position: 'relative',
-              }}>
-              {data.id == 1 ? (
-                <View
-                  style={{
-                    position: 'absolute',
-                    bottom: 15,
-                    right: 10,
-                    zIndex: 1,
-                  }}>
-                  <Entypo
-                    name="circle-with-plus"
-                    style={{
-                      fontSize: 20,
-                      color: '#405de6',
-                      backgroundColor: 'white',
-                      borderRadius: 100,
-                    }}
-                  />
-                </View>
-              ) : null}
-              <View
-                style={{
-                  width: 68,
-                  height: 68,
-                  backgroundColor: 'white',
-                  borderWidth: 1.8,
-                  borderRadius: 100,
-                  borderColor: '#c13584',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <Image
-                  source={data.image}
-                  style={{
-                    resizeMode: 'cover',
-                    width: '92%',
-                    height: '92%',
-                    borderRadius: 100,
-                    backgroundColor: 'orange',
-                  }}
-                />
+          <View style={{marginLeft: 10}}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Story', {item})}>
+              <View style={styles.imageContainer}>
+                <Image style={styles.image} source={item.story.image} />
               </View>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  fontSize: 10,
-                  opacity: data.id == 0 ? 1 : 0.5,
-                }}>
-                {data.name}
-              </Text>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+            <Text style={styles.userName}>{item.username}</Text>
+          </View>
         );
       })}
-    </ScrollView>
+    </View>
   );
 };
 
 export default Stories;
+
+const styles = StyleSheet.create({
+  container: {flexDirection: 'row', paddingTop: 8, backgroundColor: 'white'},
+  imageContainer: {
+    borderWidth: 3,
+    borderRadius: 40,
+    padding: 2,
+    borderColor: '#FF20B1',
+  },
+  image: {height: 70, width: 70, borderRadius: 35},
+  userName: {textAlign: 'center', color: 'black'},
+});

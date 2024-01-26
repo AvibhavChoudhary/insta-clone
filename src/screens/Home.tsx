@@ -1,6 +1,8 @@
 import React from 'react';
-import {View, Text, StatusBar} from 'react-native';
+import {View, ScrollView, StatusBar, StyleSheet} from 'react-native';
 import Header from '../components/Header';
+import Post from '../components/Post';
+import Stories from '../components/Stories';
 
 const Home = () => {
   return (
@@ -10,9 +12,19 @@ const Home = () => {
         barStyle="dark-content"
         animated={true}
       />
-      <Header />
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        style={styles.scrollViewContainer}>
+        <Header />
+        <Stories />
+        <Post />
+      </ScrollView>
     </View>
   );
 };
 
 export default Home;
+
+const styles = StyleSheet.create({
+  scrollViewContainer: {flex: 1, backgroundColor: 'white'},
+});
