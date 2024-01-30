@@ -1,61 +1,66 @@
-import {
-  Box,
-  Image,
-  Input,
-  InputField,
-  Button,
-  ButtonText,
-} from '@gluestack-ui/themed';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import InputBox from '../components/InputBox';
+import CustomButton from '../components/CustomButton';
+import {useNavigation} from '@react-navigation/native';
 
 const Login = () => {
+  const navigation = useNavigation();
+  const handleLogin = values => {
+    // console.log(values);
+    navigation.navigate('Bottom');
+  };
   return (
-    <Box flex={1} justifyContent="center" style={styles.container}>
-      <Box w="$full" bgColor="red">
+    <View style={styles.mainContainer}>
+      <View style={{flex: 1, justifyContent: 'center'}}>
         <Image
-          w={400}
-          h={100}
-          source={{
-            uri: 'https://1000logos.net/wp-content/uploads/2017/02/Logo-Instagram-1.png',
-          }}
-          alt="Instagram-Logo"
-          style={{
-            marginTop: -200,
-          }}
+          source={require('../../assets/images/Instagram-logo.png')}
+          style={styles.logoImage}
         />
-      </Box>
-      <Box flexDirection="column" alignItems="center">
-        <Input
-          variant="outline"
-          w="80%"
-          isDisabled={false}
-          isInvalid={false}
-          isReadOnly={false}>
-          <InputField placeholder="Enter Text here" />
-        </Input>
-        <Button
-          size="md"
-          w="80%"
-          variant="solid"
-          action="primary"
-          isDisabled={false}
-          isFocusVisible={false}>
-          <ButtonText>Add </ButtonText>
-        </Button>
-      </Box>
-    </Box>
+
+        <View>
+          <InputBox
+            placeholder={'Username, email address or mobile number'}
+            // onChangeText={handleChange('username')}
+            // onBlur={handleBlur('username')}
+            // value={values.username}
+            // touched={touched.username}
+            // errors={errors.username}
+          />
+
+          <CustomButton
+            buttonTitle={'Login'}
+            onPress={handleLogin}
+            // disabled={!isValid}
+          />
+        </View>
+
+        <TouchableOpacity style={{marginTop: 20, alignSelf: 'center'}}>
+          <Text style={{fontSize: 16}}>Forgotten Password?</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{justifyContent: 'flex-end'}}>
+        <TouchableOpacity
+          style={{marginBottom: 20, alignSelf: 'center'}}
+          // onPress={() => navigation.navigate('Signup')}
+        >
+          <Text style={{fontSize: 16}}>Create new account</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
 export default Login;
 
 const styles = StyleSheet.create({
-  container: {
+  mainContainer: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
-    padding: 16,
+    backgroundColor: 'white',
+  },
+  logoImage: {
+    marginBottom: 50,
+    alignSelf: 'center',
   },
 });

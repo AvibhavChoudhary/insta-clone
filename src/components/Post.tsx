@@ -15,38 +15,34 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const screenWidth = Dimensions.get('window').width;
 
-const Post = () => {
+const Post = ({postData}) => {
   return (
     <View style={{marginTop: 2}}>
-      {UserData.map(item => {
-        return (
-          <View key={item.id} style={{marginTop: 10, marginBottom: 10}}>
-            <View style={styles.profileContainer}>
-              <Image style={styles.profileAvatar} source={item.profile} />
-              <Text style={styles.profileUsername}>{item.name}</Text>
-            </View>
-            <View>
-              <Image style={styles.postImage} source={item.post.image} />
-            </View>
-            <View style={styles.postActionButtons}>
-              <TouchableOpacity>
-                <AntDesign name="hearto" style={styles.iconButton} />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Octicons name="comment" style={styles.iconButton} />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Feather name="send" style={styles.iconButton} />
-              </TouchableOpacity>
-            </View>
-            <Text style={styles.postLikes}>{item.post.like} likes</Text>
-            <View style={styles.captionContainer}>
-              <Text style={styles.captionText}>{item.name} </Text>
-              <Text style={{color: 'black'}}>{item.post.caption}</Text>
-            </View>
-          </View>
-        );
-      })}
+      <View key={postData.id} style={{marginTop: 10, marginBottom: 10}}>
+        <View style={styles.profileContainer}>
+          <Image style={styles.profileAvatar} source={postData.profile} />
+          <Text style={styles.profileUsername}>{postData.name}</Text>
+        </View>
+        <View>
+          <Image style={styles.postImage} source={postData.post.image} />
+        </View>
+        <View style={styles.postActionButtons}>
+          <TouchableOpacity>
+            <AntDesign name="hearto" style={styles.iconButton} />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Octicons name="comment" style={styles.iconButton} />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Feather name="send" style={styles.iconButton} />
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.postLikes}>{postData.post.like} likes</Text>
+        <View style={styles.captionContainer}>
+          <Text style={styles.captionText}>{postData.username} </Text>
+          <Text style={{color: 'black'}}>{postData.post.caption}</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -67,7 +63,11 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: 'black',
   },
-  postImage: {height: 400, width: screenWidth},
+  postImage: {
+    height: 400,
+    width: screenWidth,
+    objectFit: 'contain',
+  },
   postActionButtons: {
     flexDirection: 'row',
     alignItems: 'center',

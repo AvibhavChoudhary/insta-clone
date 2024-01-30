@@ -1,10 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import ProfileDetails from '../components/ProfileDetails';
+import ProfileHeader from '../components/ProfileHeader';
+import ProfilePost from '../components/ProfilePosts';
 
 const Profile = () => {
   return (
-    <View>
-      <Text>Profile Screen</Text>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
+      <ProfileHeader />
+      <ProfileDetails />
+      <ProfilePost />
     </View>
   );
 };
