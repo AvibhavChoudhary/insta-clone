@@ -15,12 +15,11 @@ const Login = () => {
   });
   const navigation = useNavigation();
   const handleLogin = () => {
-    console.log('user', username);
     setError({
       show: false,
       message: '',
     });
-    if (username === 'avibhav' || 'Avibhav') {
+    if (username.includes('avibhav') || username.includes('Avibhav')) {
       navigation.navigate('Bottom');
       setUsername('');
     } else {

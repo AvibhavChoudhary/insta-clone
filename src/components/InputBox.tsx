@@ -17,7 +17,6 @@ const InputBox = ({
         placeholder={placeholder}
         onChangeText={onChangeText}
         value={value}
-        autoCapitalize={false}
       />
       {showError && (
         <Text color="$error600" paddingLeft="$1" size="xs">

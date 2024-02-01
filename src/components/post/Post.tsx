@@ -1,33 +1,56 @@
 /* eslint-disable react-native/no-inline-styles */
-import {
-  View,
-  Text,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-  StyleSheet,
-  Platform,
-} from 'react-native';
-import React from 'react';
+import {Image, Dimensions, TouchableOpacity, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {UserDataType} from '../../utils/userData';
+import {Box, Text} from '@gluestack-ui/themed';
+import BottomSheet from './BottomSheet';
 
 const screenWidth = Dimensions.get('window').width;
 
 const Post = ({postData}: {postData: UserDataType}) => {
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const toggleModal = () => {
+    setShowModal(prev => !prev);
+  };
   return (
-    <View style={{marginTop: 2}}>
-      <View key={postData.id} style={{marginTop: 10, marginBottom: 10}}>
-        <View style={styles.profileContainer}>
-          <Image style={styles.profileAvatar} source={postData.profile} />
-          <Text style={styles.profileUsername}>{postData.name}</Text>
-        </View>
-        <View>
+    <Box mt="$1">
+      <Box key={postData.id} marginVertical="$2.5">
+        <Box
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="space-between"
+          paddingHorizontal="$2.5"
+          mb="$2">
+          <Box
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="flex-start">
+            <Image style={styles.profileAvatar} source={postData.profile} />
+            <Text
+              pl="$2.5"
+              color="$black"
+              fontWeight="$semibold"
+              fontSize="$md">
+              {postData.name}
+            </Text>
+          </Box>
+          <TouchableOpacity onPress={toggleModal}>
+            <Feather name="more-vertical" style={styles.iconButton} />
+          </TouchableOpacity>
+        </Box>
+        <Box>
           <Image style={styles.postImage} source={postData.post.image} />
-        </View>
-        <View style={styles.postActionButtons}>
+        </Box>
+        <Box
+          flexDirection="row"
+          alignItems="center"
+          mt="$2"
+          w="$2/6"
+          justifyContent="space-around"
+          h="$8">
           <TouchableOpacity>
             <AntDesign name="hearto" style={styles.iconButton} />
           </TouchableOpacity>
@@ -37,58 +60,36 @@ const Post = ({postData}: {postData: UserDataType}) => {
           <TouchableOpacity>
             <Feather name="send" style={styles.iconButton} />
           </TouchableOpacity>
-        </View>
-        <Text style={styles.postLikes}>{postData.post.like} likes</Text>
-        <View style={styles.captionContainer}>
-          <Text style={styles.captionText}>{postData.username} </Text>
-          <Text style={{color: 'black'}}>{postData.post.caption}</Text>
-        </View>
-      </View>
-    </View>
+        </Box>
+        <Text
+          ml="$3"
+          mt="$1"
+          fontSize="$md"
+          color="$black"
+          fontWeight="$semibold">
+          {postData.post.like} likes
+        </Text>
+        <Box flexDirection="row" paddingHorizontal="$3" alignItems="center">
+          <Text fontWeight="$semibold" color="$textDark800">
+            {postData.username}{' '}
+          </Text>
+          <Text color="$textDark800">{postData.post.caption}</Text>
+        </Box>
+      </Box>
+
+      <BottomSheet showModal={showModal} toggleModal={toggleModal} />
+    </Box>
   );
 };
 
 export default Post;
 
 const styles = StyleSheet.create({
-  profileContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    marginBottom: 8,
-  },
   profileAvatar: {height: 30, width: 30, borderRadius: 15},
-  profileUsername: {
-    paddingLeft: 10,
-    fontSize: 16,
-    fontWeight: '600',
-    color: 'black',
-  },
   postImage: {
     height: 400,
     width: screenWidth,
     objectFit: 'contain',
   },
-  postActionButtons: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 5,
-    height: 30,
-    width: '38%',
-    justifyContent: 'space-around',
-  },
-  postLikes: {
-    marginLeft: 13,
-    marginTop: 4,
-    fontSize: 16,
-    fontWeight: '600',
-    color: 'black',
-  },
-  captionContainer: {
-    flexDirection: 'row',
-    paddingHorizontal: 13,
-    alignItems: 'center',
-  },
-  captionText: {color: 'black', fontSize: 16, fontWeight: '500'},
   iconButton: {fontSize: 24},
 });
