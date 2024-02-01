@@ -10,9 +10,6 @@ const ProfileHeader = () => {
   const [open, setOpen] = useState(false);
   const navigation = useNavigation();
 
-  const handleModal = () => {
-    setOpen(!open);
-  };
   const handleLogout = () => {
     navigation.navigate('Login');
   };

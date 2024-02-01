@@ -8,7 +8,7 @@ const ProfileDetails = () => {
       <View style={styles.profileContainer}>
         <Image
           style={styles.profileAvatar}
-          source={require('../../assets/self-avatar.jpg')}
+          source={require('../../../assets/self-avatar.jpg')}
         />
 
         <View style={styles.followerConatiner}>

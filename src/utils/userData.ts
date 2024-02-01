@@ -1,4 +1,21 @@
-export const UserData = [
+export type UserDataType = {
+  id: number;
+  name: string;
+  username: string;
+  profile: any;
+  story: {
+    time: number;
+    image: any;
+  };
+  post: {
+    time: string;
+    date: string;
+    image: any;
+    caption: string;
+    like: number;
+  };
+};
+export const UserData: UserDataType[] = [
   {
     id: 1,
     name: 'Rajeev Roy',

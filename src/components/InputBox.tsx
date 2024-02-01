@@ -1,42 +1,36 @@
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {StyleSheet, TextInput} from 'react-native';
 import React from 'react';
+import {InputProps} from '../utils/types';
+import {Box, Text} from '@gluestack-ui/themed';
 
 const InputBox = ({
   placeholder,
   onChangeText,
-  onBlur,
   value,
-  maxLength,
-  secureTextEntry,
-  keyboardType,
-  touched,
-  errors,
-}) => {
+  errorMessage,
+  showError,
+}: InputProps) => {
   return (
-    <View style={styles.mainContainer}>
+    <Box h="$16">
       <TextInput
         style={styles.inputText}
         placeholder={placeholder}
         onChangeText={onChangeText}
-        onBlur={onBlur}
         value={value}
-        secureTextEntry={secureTextEntry}
-        touched={touched}
-        keyboardType={keyboardType}
-        maxLength={maxLength}
+        autoCapitalize={false}
       />
-      {errors && touched && <Text style={styles.errorMsg}>{errors}</Text>}
-    </View>
+      {showError && (
+        <Text color="$error600" paddingLeft="$1" size="xs">
+          {errorMessage}
+        </Text>
+      )}
+    </Box>
   );
 };
 
 export default InputBox;
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    height: 68,
-    marginBottom: 10,
-  },
   inputText: {
     borderWidth: 1,
     width: 350,
@@ -44,9 +38,5 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     height: '65%',
-  },
-  errorMsg: {
-    color: 'red',
-    paddingLeft: 5,
   },
 });

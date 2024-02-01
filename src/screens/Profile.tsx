@@ -1,19 +1,17 @@
+import {Box} from '@gluestack-ui/themed';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import ProfileDetails from '../components/ProfileDetails';
-import ProfileHeader from '../components/ProfileHeader';
-import ProfilePost from '../components/ProfilePosts';
+import ProfileDetails from '../components/profile/ProfileDetails';
+import ProfileHeader from '../components/profile/ProfileHeader';
+import ProfilePost from '../components/profile/ProfilePosts';
 
 const Profile = () => {
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
+    <Box flex={1} bg="$white">
       <ProfileHeader />
       <ProfileDetails />
       <ProfilePost />
-    </View>
+    </Box>
   );
 };
 
 export default Profile;
-
-const styles = StyleSheet.create({});

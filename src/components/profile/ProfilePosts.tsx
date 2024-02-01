@@ -9,9 +9,9 @@ import {
   StyleSheet,
 } from 'react-native';
 import React, {useState} from 'react';
-import {UserData, typeData} from '../utils/userData';
+import {UserData, typeData} from '../../utils/userData';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {ProfileTabs} from '../navigation/ProfileTab';
+import {ProfileTabs} from '../../navigation/ProfileTab';
 
 const ProfilePost = () => {
   const highlightedStories = () => {

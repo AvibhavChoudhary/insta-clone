@@ -1,25 +1,32 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
+import {FlatList, Image} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {UserData} from '../utils/userData';
+import {Box, Text} from '@gluestack-ui/themed';
 export const ProfileTabs = () => {
   const Tab = createMaterialTopTabNavigator();
 
   const renderItem = item => {
     return (
-      <View>
+      <Box>
         <Image
           style={{height: 130.9, width: 130.9}}
           source={item.item.post.image}
         />
-      </View>
+      </Box>
     );
   };
   const Posts = () => {
     return (
-      <View style={styles.tabContainer}>
+      <Box
+        flex={1}
+        bgColor="$white"
+        flexWrap="wrap"
+        flexDirection="row"
+        justifyContent="space-between"
+        paddingVertical="$2.5">
         <FlatList
           data={UserData}
           renderItem={renderItem}
@@ -27,21 +34,33 @@ export const ProfileTabs = () => {
           numColumns={3}
           showsHorizontalScrollIndicator={false}
         />
-      </View>
+      </Box>
     );
   };
   const Video = () => {
     return (
-      <View style={styles.tabContainer}>
+      <Box
+        flex={1}
+        bgColor="$white"
+        flexWrap="wrap"
+        flexDirection="row"
+        justifyContent="space-between"
+        paddingVertical="$2.5">
         <Text>Hii</Text>
-      </View>
+      </Box>
     );
   };
   const Tags = () => {
     return (
-      <View style={{}}>
+      <Box
+        flex={1}
+        bgColor="$white"
+        flexWrap="wrap"
+        flexDirection="row"
+        justifyContent="space-between"
+        paddingVertical="$2.5">
         <Text>Hii</Text>
-      </View>
+      </Box>
     );
   };
   return (
@@ -74,15 +93,3 @@ export const ProfileTabs = () => {
     </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  tabContainer: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'white',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    paddingVertical: 5,
-    justifyContent: 'space-between',
-  },
-});

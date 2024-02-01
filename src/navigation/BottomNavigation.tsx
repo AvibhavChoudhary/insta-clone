@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -18,7 +19,6 @@ const BottomNavigation = () => {
         tabBarStyle: {
           height: 50,
         },
-        // eslint-disable-next-line react/no-unstable-nested-components
         tabBarIcon: ({focused, size, color}) => {
           let iconName;
           if (route.name === 'Home') {

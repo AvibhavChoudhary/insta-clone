@@ -1,64 +1,79 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+/* eslint-disable react-native/no-inline-styles */
+import {StyleSheet, TouchableOpacity, View, Image} from 'react-native';
+import React, {useState} from 'react';
 import InputBox from '../components/InputBox';
 import CustomButton from '../components/CustomButton';
 import {useNavigation} from '@react-navigation/native';
+import {Box, Text} from '@gluestack-ui/themed';
+import {Error} from '../utils/types';
 
 const Login = () => {
+  const [username, setUsername] = useState<string>('');
+  const [error, setError] = useState<Error>({
+    show: false,
+    message: '',
+  });
   const navigation = useNavigation();
-  const handleLogin = values => {
-    // console.log(values);
-    navigation.navigate('Bottom');
+  const handleLogin = () => {
+    console.log('user', username);
+    setError({
+      show: false,
+      message: '',
+    });
+    if (username === 'avibhav' || 'Avibhav') {
+      navigation.navigate('Bottom');
+      setUsername('');
+    } else {
+      setError({
+        show: true,
+        message: 'User not found',
+      });
+    }
   };
+
   return (
-    <View style={styles.mainContainer}>
-      <View style={{flex: 1, justifyContent: 'center'}}>
+    <Box flex={1} alignItems="center" bg="$white">
+      <Box flex={1} justifyContent="center">
         <Image
           source={require('../../assets/images/Instagram-logo.png')}
           style={styles.logoImage}
         />
 
-        <View>
+        <Box>
           <InputBox
             placeholder={'Username, email address or mobile number'}
-            // onChangeText={handleChange('username')}
-            // onBlur={handleBlur('username')}
-            // value={values.username}
-            // touched={touched.username}
-            // errors={errors.username}
+            onChangeText={e => setUsername(e)}
+            value={username}
+            showError={error.show}
+            errorMessage={error.message}
           />
 
           <CustomButton
             buttonTitle={'Login'}
             onPress={handleLogin}
-            // disabled={!isValid}
+            disabled={username ? false : true}
           />
-        </View>
+        </Box>
 
         <TouchableOpacity style={{marginTop: 20, alignSelf: 'center'}}>
-          <Text style={{fontSize: 16}}>Forgotten Password?</Text>
+          <Text fontSize="$md">Forgotten Password?</Text>
         </TouchableOpacity>
-      </View>
-      <View style={{justifyContent: 'flex-end'}}>
+      </Box>
+      <Box justifyContent="flex-end">
         <TouchableOpacity
           style={{marginBottom: 20, alignSelf: 'center'}}
           // onPress={() => navigation.navigate('Signup')}
         >
-          <Text style={{fontSize: 16}}>Create new account</Text>
+          <Text fontSize="$md">Create new account</Text>
         </TouchableOpacity>
-      </View>
-    </View>
+      </Box>
+    </Box>
   );
 };
 
 export default Login;
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
   logoImage: {
     marginBottom: 50,
     alignSelf: 'center',

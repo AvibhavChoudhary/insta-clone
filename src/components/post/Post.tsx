@@ -6,16 +6,17 @@ import {
   Dimensions,
   TouchableOpacity,
   StyleSheet,
+  Platform,
 } from 'react-native';
 import React from 'react';
-import {UserData} from '../utils/userData';
 import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {UserDataType} from '../../utils/userData';
 
 const screenWidth = Dimensions.get('window').width;
 
-const Post = ({postData}) => {
+const Post = ({postData}: {postData: UserDataType}) => {
   return (
     <View style={{marginTop: 2}}>
       <View key={postData.id} style={{marginTop: 10, marginBottom: 10}}>
