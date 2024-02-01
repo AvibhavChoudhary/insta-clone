@@ -10,13 +10,35 @@ import {
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Entypo from 'react-native-vector-icons/Entypo';
+import {UserData, UserDataType} from '../../utils/userData';
 
 const Stories = ({storiesData}) => {
   const navigation = useNavigation();
+  const postData: UserDataType[] = [...UserData];
   return (
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-      {storiesData.map((item, index) => {
-        return (
+      <TouchableOpacity
+        key={postData[0].id}
+        onPress={() => navigation.navigate('Story', {item})}>
+        <View
+          style={{
+            flexDirection: 'column',
+            paddingHorizontal: 8,
+            height: 100,
+          }}>
+          {postData[0].id === 1 ? (
+            <View style={styles.iconContainer}>
+              <Entypo name="circle-with-plus" style={styles.plusIcon} />
+            </View>
+          ) : null}
+          <View style={styles.imageContainer}>
+            <Image style={styles.image} source={postData[0].story.image} />
+          </View>
+          <Text style={styles.userName}>{storiesData[0].username}</Text>
+        </View>
+      </TouchableOpacity>
+      {storiesData.slice(1).map((item, index) => {
+        return !(item.id === 1) ? (
           <TouchableOpacity
             key={index}
             onPress={() => navigation.navigate('Story', {item})}>
@@ -26,18 +48,13 @@ const Stories = ({storiesData}) => {
                 paddingHorizontal: 8,
                 height: 100,
               }}>
-              {item.id === 1 ? (
-                <View style={styles.iconContainer}>
-                  <Entypo name="circle-with-plus" style={styles.plusIcon} />
-                </View>
-              ) : null}
               <View style={styles.imageContainer}>
                 <Image style={styles.image} source={item.story.image} />
               </View>
               <Text style={styles.userName}>{item.username}</Text>
             </View>
           </TouchableOpacity>
-        );
+        ) : null;
       })}
     </ScrollView>
   );

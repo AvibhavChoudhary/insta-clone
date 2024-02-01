@@ -10,3 +10,13 @@ export type InputProps = {
   errorMessage?: string;
   showError?: boolean;
 };
+
+export type BottomSheetProps = {
+  showModal: boolean;
+  toggleModal: () => void;
+};
+
+export type SheetItemType = {
+  name: string;
+  iconName: () => React.JSX.Element;
+};
