@@ -30,6 +30,7 @@ const ProfileSettings = ({showModal, toggleModal}: BottomSheetProps) => {
         {PROFILE_SETTINGS_LIST.map(({name, iconName}: SheetItemType) => {
           return (
             <ActionsheetItem
+              key={name}
               onPress={() => {
                 if (name === 'Logout') {
                   handleLogout();

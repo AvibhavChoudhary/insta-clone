@@ -124,3 +124,30 @@ export const PROFILE_SETTINGS_LIST: SheetItemType[] = [
     iconName: () => <MaterialIcons name="logout" style={{fontSize: 20}} />,
   },
 ];
+
+export const ADD_POST_OPTIONS: SheetItemType[] = [
+  {
+    name: 'Add location',
+    iconName: () => <Entypo name="location-pin" style={{fontSize: 24}} />,
+  },
+  {
+    name: 'Tag people',
+    iconName: () => <Ionicons name="person" style={{fontSize: 24}} />,
+  },
+  {
+    name: 'Audience',
+    iconName: () => <AntDesign name="eye" style={{fontSize: 24}} />,
+  },
+  {
+    name: 'Add product details',
+    iconName: () => <Feather name="shopping-bag" style={{fontSize: 24}} />,
+  },
+  {
+    name: 'Add reminder',
+    iconName: () => <AntDesign name="calendar" style={{fontSize: 24}} />,
+  },
+  {
+    name: 'Add music',
+    iconName: () => <FontAwesome name="music" style={{fontSize: 24}} />,
+  },
+];
