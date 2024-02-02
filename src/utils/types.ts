@@ -20,3 +20,8 @@ export type SheetItemType = {
   name: string;
   iconName: () => React.JSX.Element;
 };
+
+export type UploadPostProps = {
+  imageUri: string;
+  toggleButtons: () => void;
+};

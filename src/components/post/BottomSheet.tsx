@@ -30,7 +30,7 @@ const BottomSheet = ({showModal, toggleModal}: BottomSheetProps) => {
           paddingVertical="$2.5">
           {SHEET_ACTION_BUTTON.map(({name, iconName}: SheetItemType) => {
             return (
-              <VStack alignItems="center">
+              <VStack alignItems="center" key={name}>
                 <ActionsheetItem
                   flexDirection="row"
                   justifyContent="center"
@@ -52,7 +52,7 @@ const BottomSheet = ({showModal, toggleModal}: BottomSheetProps) => {
 
         {SHEET_LIST_ITEMS.map(({name, iconName}: SheetItemType) => {
           return (
-            <ActionsheetItem>
+            <ActionsheetItem key={name}>
               {iconName()}
               <ActionsheetItemText ml="$2.5" size="md" color="black">
                 {name}

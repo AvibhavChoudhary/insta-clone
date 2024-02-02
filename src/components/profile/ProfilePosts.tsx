@@ -1,17 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
-import {
-  View,
-  TouchableOpacity,
-  Image,
-  FlatList,
-  ScrollView,
-  Text,
-  StyleSheet,
-} from 'react-native';
-import React, {useState} from 'react';
-import {UserData, typeData} from '../../utils/userData';
+import {View, ScrollView, StyleSheet} from 'react-native';
+import React from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {ProfileTabs} from '../../navigation/ProfileTab';
+import {Box} from '@gluestack-ui/themed';
 
 const ProfilePost = () => {
   const highlightedStories = () => {
@@ -32,7 +24,7 @@ const ProfilePost = () => {
   };
 
   return (
-    <View style={{marginTop: 20, height: '100%'}}>
+    <Box mt="$4" flex={1}>
       <View>
         <ScrollView
           horizontal={true}
@@ -41,11 +33,10 @@ const ProfilePost = () => {
           {highlightedStories()}
         </ScrollView>
       </View>
-
-      <View style={{backgroundColor: 'green', width: '100%', height: '100%'}}>
+      <Box flex={1}>
         <ProfileTabs />
-      </View>
-    </View>
+      </Box>
+    </Box>
   );
 };
 

@@ -5,7 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionic from 'react-native-vector-icons/Ionicons';
 import Home from '../screens/Home';
 import Search from '../screens/Search';
-import Reels from '../screens/Reels';
+import AddPost from '../screens/AddPost';
 import Profile from '../screens/Profile';
 
 const Tab = createBottomTabNavigator();
@@ -26,10 +26,8 @@ const BottomNavigation = () => {
             size = focused ? size + 8 : size + 2;
           } else if (route.name === 'Search') {
             iconName = focused ? 'search' : 'search-outline';
-          } else if (route.name === 'Reels') {
-            iconName = focused
-              ? 'caret-forward-circle'
-              : 'caret-forward-circle-outline';
+          } else if (route.name === 'AddPost') {
+            iconName = focused ? 'add-circle' : 'add-outline';
           } else if (route.name === 'Activity') {
             iconName = focused ? 'heart' : 'heart-outline';
           } else if (route.name === 'Profile') {
@@ -40,7 +38,7 @@ const BottomNavigation = () => {
       })}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Search" component={Search} />
-      <Tab.Screen name="Reels" component={Reels} />
+      <Tab.Screen name="AddPost" component={AddPost} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );

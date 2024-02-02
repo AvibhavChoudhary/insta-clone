@@ -5,9 +5,12 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import ProfileSettings from './ProfleSettings';
+import {useNavigation} from '@react-navigation/native';
 
 const ProfileHeader = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const navigation = useNavigation();
+
   const toggleModal = () => {
     setShowModal(prev => !prev);
   };
@@ -32,7 +35,9 @@ const ProfileHeader = () => {
           <AntDesign name="down" style={{fontSize: 14, marginLeft: 5}} />
         </View>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <TouchableOpacity style={{marginRight: 15}}>
+          <TouchableOpacity
+            style={{marginRight: 15}}
+            onPress={() => navigation.navigate('AddPost')}>
             <Feather name="plus-square" style={{fontSize: 24}} />
           </TouchableOpacity>
           <TouchableOpacity onPress={toggleModal}>

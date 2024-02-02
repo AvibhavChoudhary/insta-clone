@@ -25,8 +25,8 @@ const ProfileDetails = () => {
         </View>
       </View>
       <Text style={styles.profileName}>Avi Choudhary</Text>
-      <Text style={{color: 'black'}}>React Native</Text>
-      <Text style={{color: 'black'}}>Instagram Clone</Text>
+      <Text style={{color: 'black'}}>Personal blog</Text>
+      <Text style={{color: 'black'}}>Jai Shree Ram</Text>
       <Text style={{color: 'black', fontSize: 16, fontWeight: '500'}}>
         See Translation
       </Text>
