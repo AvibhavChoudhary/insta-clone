@@ -1,19 +1,27 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
+import React, {useContext} from 'react';
 import {FlatList, Image} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {UserData} from '../utils/userData';
 import {Box, Text} from '@gluestack-ui/themed';
+import PostContext from '../context/PostContext';
+import {UserDataType} from '../utils/userData';
 export const ProfileTabs = () => {
   const Tab = createMaterialTopTabNavigator();
+  const {state} = useContext(PostContext);
+  const postData: UserDataType[] = [...state.posts];
 
   const renderItem = item => {
     return (
       <Box>
         <Image
           style={{height: 130.9, width: 130.9}}
-          source={item.item.post.image}
+          source={
+            typeof item.item.post[0].image === 'string'
+              ? {uri: item.item.post[0].image}
+              : item.item.post[0].image
+          }
         />
       </Box>
     );
@@ -26,13 +34,15 @@ export const ProfileTabs = () => {
         flexWrap="wrap"
         flexDirection="row"
         justifyContent="space-between"
-        paddingVertical="$2.5">
+        paddingVertical="$2">
         <FlatList
-          data={UserData}
+          data={postData}
+          style={{
+            height: '100%',
+          }}
           renderItem={renderItem}
           keyExtractor={item => item.id.toString()}
           numColumns={3}
-          showsHorizontalScrollIndicator={false}
         />
       </Box>
     );

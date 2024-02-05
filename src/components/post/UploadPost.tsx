@@ -8,20 +8,43 @@ import {
   Box,
   HStack,
   Image,
+  CloseIcon,
+  Icon,
 } from '@gluestack-ui/themed';
-import React from 'react';
-import {ADD_POST_OPTIONS} from '../utils/helpers';
-import {UploadPostProps} from '../utils/types';
+import React, {useState} from 'react';
+import {ADD_POST_OPTIONS} from '../../utils/helpers';
+import {UploadPostProps} from '../../utils/types';
 import Feather from 'react-native-vector-icons/Feather';
 
-const UploadPost = ({imageUri, toggleButtons}: UploadPostProps) => {
+const UploadPost = ({
+  imageUri,
+  toggleButtons,
+  isEdit = false,
+  caption,
+  onShare,
+}: UploadPostProps) => {
+  const [imageCaption, setImageCaption] = useState(caption ?? '');
+  const handleCaption = value => {
+    setImageCaption(value);
+  };
   return (
     <VStack flex={1} paddingVertical="$2" alignItems="center">
+      <Pressable
+        position="absolute"
+        onPress={toggleButtons}
+        right={10}
+        top={15}
+        h="$8"
+        w="$8"
+        alignItems="center"
+        justifyContent="center"
+        borderRadius="$full"
+        bg="$warmGray300">
+        <Icon as={CloseIcon} color="black" size="sm" />
+      </Pressable>
       <Image
         style={{height: 300, width: 300, borderRadius: 10}}
-        source={{
-          uri: imageUri ? imageUri : require('../../assets/self-avatar.jpg'),
-        }}
+        source={imageUri}
         alt="Uploaded image"
       />
 
@@ -34,7 +57,11 @@ const UploadPost = ({imageUri, toggleButtons}: UploadPostProps) => {
         isDisabled={false}
         isInvalid={false}
         isReadOnly={false}>
-        <InputField placeholder="Write a caption" />
+        <InputField
+          value={imageCaption}
+          onChangeText={handleCaption}
+          placeholder="Write a caption"
+        />
       </Input>
       <Box mt="$2">
         {ADD_POST_OPTIONS.map(({name, iconName}) => {
@@ -64,7 +91,7 @@ const UploadPost = ({imageUri, toggleButtons}: UploadPostProps) => {
       </Box>
       <Box position="absolute" bottom={0} w="$full">
         <Pressable
-          onPress={toggleButtons}
+          onPress={() => onShare({image: imageUri, caption: imageCaption})}
           p="$3"
           m="$2"
           flex={1}
@@ -72,7 +99,7 @@ const UploadPost = ({imageUri, toggleButtons}: UploadPostProps) => {
           alignItems="center"
           bg="$primary500"
           $hover-bg="$primary400">
-          <Text color="white">Share</Text>
+          <Text color="white">{isEdit ? 'Update' : 'Share'}</Text>
         </Pressable>
       </Box>
     </VStack>

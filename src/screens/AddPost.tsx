@@ -1,26 +1,42 @@
 /* eslint-disable react-native/no-inline-styles */
-import {
-  Button,
-  ButtonText,
-  useToast,
-  VStack,
-  ToastTitle,
-  Toast,
-  ToastDescription,
-} from '@gluestack-ui/themed';
-import React, {useState} from 'react';
+import {Button, ButtonText, useToast, VStack} from '@gluestack-ui/themed';
+import React, {useState, useEffect, useContext} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import UploadPost from '../components/UploadPost';
+import UploadPost from '../components/post/UploadPost';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {PostType} from '../utils/types';
+import {useNavigation} from '@react-navigation/native';
+import PostContext from '../context/PostContext';
+import {showToastMessage} from '../utils/helpers';
 
-const AddPost = () => {
-  const [showAddButtons, setShowAddButton] = useState(true);
-  const [imageUri, setImageUri] = useState<string>('');
+const AddPost = ({route}) => {
+  const postData: PostType | null = route?.params?.postData ?? null;
+  const postId: number = route?.params?.postId;
+  const {state, addPost, updatePost} = useContext(PostContext);
+
+  const [showAddButtons, setShowAddButton] = useState(
+    postData?.image ? false : true,
+  );
+  const [imageUri, setImageUri] = useState<string>(postData?.image ?? '');
   const toast = useToast();
+  const navigation = useNavigation();
 
-  const toggleImagePreview = () => {
-    setShowAddButton(prev => !prev);
+  const isEdit = postData ? true : false;
+
+  useEffect(() => {
+    if (postData?.image) {
+      setShowAddButton(false);
+      setImageUri(postData?.image);
+    }
+  }, [postData?.image]);
+
+  const closeImagePreview = () => {
+    setShowAddButton(true);
+    navigation.setParams({postData: undefined, postId: undefined});
+  };
+  const openImagePreview = () => {
+    setShowAddButton(false);
   };
 
   const openCamera = async () => {
@@ -30,22 +46,16 @@ const AddPost = () => {
     });
     if (result.assets[0].uri) {
       setImageUri(result.assets[0].uri);
-      toggleImagePreview();
+      openImagePreview();
     }
     if (result.errorCode) {
-      toast.show({
+      showToastMessage({
+        toastRef: toast,
+        title: 'Attention!',
+        description: result.errorCode,
+        variant: 'accent',
+        action: 'error',
         placement: 'top',
-        render: ({id}) => {
-          const toastId = 'toast-' + id;
-          return (
-            <Toast nativeID={toastId} variant="accent" action="error">
-              <VStack space="xs">
-                <ToastTitle>Attention!</ToastTitle>
-                <ToastDescription>{result.errorCode}</ToastDescription>
-              </VStack>
-            </Toast>
-          );
-        },
       });
     }
   };
@@ -56,25 +66,59 @@ const AddPost = () => {
     });
     if (result.assets[0].uri) {
       setImageUri(result.assets[0].uri);
-      toggleImagePreview();
+      openImagePreview();
     }
     if (result.errorCode) {
-      toast.show({
+      showToastMessage({
+        toastRef: toast,
+        title: 'Attention!',
+        description: result.errorCode,
+        variant: 'accent',
+        action: 'error',
         placement: 'top',
-        render: ({id}) => {
-          const toastId = 'toast-' + id;
-          return (
-            <Toast nativeID={toastId} variant="accent" action="error">
-              <VStack space="xs">
-                <ToastTitle>Attention!</ToastTitle>
-                <ToastDescription>{result.errorCode}</ToastDescription>
-              </VStack>
-            </Toast>
-          );
-        },
       });
     }
   };
+
+  const onShareConfirm = ({image, caption}) => {
+    closeImagePreview();
+    if (!isEdit) {
+      addPost({
+        id: 100 + state.posts.length,
+        name: 'Avi Choudhary',
+        username: 'avichoudhary',
+        profile: require('../../assets/self-avatar.jpg'),
+        story: [],
+        post: [
+          {
+            time: '07:00 AM',
+            date: '12/05/2023',
+            image: image,
+            caption: caption,
+            like: 0,
+          },
+        ],
+      });
+    } else {
+      updatePost(postId, {
+        ...postData,
+        image: image,
+        caption: caption,
+      });
+    }
+    navigation.navigate('Home');
+    showToastMessage({
+      toastRef: toast,
+      title: 'Success',
+      description: `Your post has been  ${
+        isEdit ? 'updated' : 'added'
+      } successfully`,
+      variant: 'accent',
+      action: 'success',
+      placement: 'top',
+    });
+  };
+
   return (
     <VStack flex={1} alignItems="center" justifyContent="center">
       {showAddButtons ? (
@@ -105,7 +149,13 @@ const AddPost = () => {
           </Button>
         </>
       ) : (
-        <UploadPost imageUri={imageUri} toggleButtons={toggleImagePreview} />
+        <UploadPost
+          imageUri={imageUri}
+          toggleButtons={closeImagePreview}
+          caption={postData?.caption}
+          isEdit={isEdit}
+          onShare={onShareConfirm}
+        />
       )}
     </VStack>
   );

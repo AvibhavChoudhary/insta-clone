@@ -1,22 +1,28 @@
 import {Box} from '@gluestack-ui/themed';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {FlatList, StatusBar} from 'react-native';
 import Header from '../components/Header';
 import Post from '../components/post/Post';
 import Stories from '../components/story/Stories';
+import PostContext from '../context/PostContext';
 import {shuffleArray} from '../utils/helpers';
-import {UserData, UserDataType} from '../utils/userData';
+import {UserDataType} from '../utils/userData';
+import {useFocusEffect} from '@react-navigation/native';
 
 const Home = () => {
-  const postData: UserDataType[] = [...UserData];
+  const {state} = useContext(PostContext);
+  const postData: UserDataType[] = [...state.posts];
   const [refreshing, setRefreshing] = useState(false);
   const [displayedItems, setDisplayedItems] = useState(0);
-  const [postItems, setPostItems] = useState<UserDataType[]>(
-    postData.slice(0, 20),
-  );
+  const [postItems, setPostItems] = useState<UserDataType[]>(postData);
 
+  useFocusEffect(
+    React.useCallback(() => {
+      setPostItems(postData);
+    }, [state]),
+  );
   useEffect(() => {
-    const newPostArray: UserDataType[] = shuffleArray(postItems);
+    const newPostArray: UserDataType[] = shuffleArray(postData);
     setPostItems(newPostArray);
   }, [displayedItems]);
 

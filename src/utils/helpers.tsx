@@ -1,6 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/react-in-jsx-scope */
-import {UserDataType} from './userData';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
@@ -9,9 +8,16 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {SheetItemType} from './types';
+import {SheetItemType, ToastProps} from './types';
+import {UserDataType} from './userData';
+import {
+  Toast,
+  VStack,
+  ToastTitle,
+  ToastDescription,
+} from '@gluestack-ui/themed';
 
-export const shuffleArray = (array: UserDataTypes[]) => {
+export const shuffleArray = (array: UserDataType[]) => {
   let currentIndex = array.length;
   let randomIndex, tempValue;
 
@@ -28,7 +34,36 @@ export const shuffleArray = (array: UserDataTypes[]) => {
   return array;
 };
 
+export const showToastMessage = ({
+  toastRef,
+  title,
+  description,
+  variant = 'accent',
+  action = 'error',
+  placement = 'top',
+}: ToastProps) => {
+  toastRef.show({
+    placement: placement,
+    render: ({id}) => {
+      const toastId = 'toast-' + id;
+      return (
+        <Toast nativeID={toastId} variant={variant} action={action}>
+          <VStack space="xs">
+            <ToastTitle>{title}</ToastTitle>
+            <ToastDescription>{description}</ToastDescription>
+          </VStack>
+        </Toast>
+      );
+    },
+  });
+};
+
 export const SHEET_LIST_ITEMS: SheetItemType[] = [
+  {
+    name: 'Edit',
+    iconName: () => <Feather name="edit" style={{fontSize: 20}} />,
+  },
+
   {
     name: 'Add to favorites',
     iconName: () => <AntDesign name="staro" style={{fontSize: 20}} />,
@@ -46,6 +81,12 @@ export const SHEET_LIST_ITEMS: SheetItemType[] = [
   {
     name: 'Hide',
     iconName: () => <Feather name="eye-off" style={{fontSize: 20}} />,
+  },
+  {
+    name: 'Delete',
+    iconName: () => (
+      <AntDesign name="delete" style={{fontSize: 20, color: 'red'}} />
+    ),
   },
   {
     name: 'Block',
