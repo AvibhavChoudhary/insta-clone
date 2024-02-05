@@ -105,6 +105,10 @@ const StoryView = ({route}) => {
     width: `${progress.value * 100}%`,
   }));
 
+  const handleCancelAnimation = () => {
+    cancelAnimation(progress);
+  };
+
   return (
     <Box
       flex={1}
@@ -115,19 +119,26 @@ const StoryView = ({route}) => {
       <Pressable
         flex={1}
         position="absolute"
+        alignSelf="center"
+        h="80%"
+        w="32%"
+        left="34%"
+        zIndex={1}
+        bottom={80}
+        onLongPress={handleCancelAnimation}
+        onPressOut={startAnimation}
+      />
+      <Pressable
+        flex={1}
+        position="absolute"
         h="80%"
         w="34%"
         left={0}
         zIndex={1}
         bottom={80}
         onPress={gotoPrevStory}
-        onLongPress={() => {
-          console.log('long');
-          cancelAnimation(progress);
-        }}
-        onPressOut={() => {
-          console.log('press out');
-        }}
+        onLongPress={handleCancelAnimation}
+        onPressOut={startAnimation}
       />
       <Pressable
         flex={1}
@@ -138,9 +149,8 @@ const StoryView = ({route}) => {
         zIndex={1}
         bottom={80}
         onPress={gotoNextStory}
-        onPressOut={() => {
-          console.log('press out');
-        }}
+        onLongPress={handleCancelAnimation}
+        onPressOut={startAnimation}
       />
 
       <Box

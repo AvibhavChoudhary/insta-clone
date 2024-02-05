@@ -16,20 +16,19 @@ const AddPost = ({route}) => {
   const {state, addPost, updatePost} = useContext(PostContext);
 
   const [showAddButtons, setShowAddButton] = useState(
-    postData?.image ? false : true,
+    postData?.images[0] ? false : true,
   );
-  const [imageUri, setImageUri] = useState<string>(postData?.image ?? '');
+  const [imageUri, setImageUri] = useState<string>(postData?.images[0] ?? '');
   const toast = useToast();
   const navigation = useNavigation();
 
   const isEdit = postData ? true : false;
-
   useEffect(() => {
-    if (postData?.image) {
+    if (postData?.images[0]) {
       setShowAddButton(false);
-      setImageUri(postData?.image);
+      setImageUri(postData?.images[0]);
     }
-  }, [postData?.image]);
+  }, [postData?.images[0]]);
 
   const closeImagePreview = () => {
     setShowAddButton(true);
@@ -44,11 +43,11 @@ const AddPost = ({route}) => {
       mediaType: 'photo',
       quality: 0.7,
     });
-    if (result.assets[0].uri) {
+    if (result?.assets) {
       setImageUri(result.assets[0].uri);
       openImagePreview();
     }
-    if (result.errorCode) {
+    if (result?.errorCode) {
       showToastMessage({
         toastRef: toast,
         title: 'Attention!',
@@ -64,7 +63,7 @@ const AddPost = ({route}) => {
       mediaType: 'photo',
       quality: 0.7,
     });
-    if (result.assets[0].uri) {
+    if (result.assets) {
       setImageUri(result.assets[0].uri);
       openImagePreview();
     }
@@ -89,20 +88,18 @@ const AddPost = ({route}) => {
         username: 'avichoudhary',
         profile: require('../../assets/self-avatar.jpg'),
         story: [],
-        post: [
-          {
-            time: '07:00 AM',
-            date: '12/05/2023',
-            image: image,
-            caption: caption,
-            like: 0,
-          },
-        ],
+        post: {
+          time: '07:00 AM',
+          date: '12/05/2023',
+          images: [image],
+          caption: caption,
+          like: 0,
+        },
       });
     } else {
       updatePost(postId, {
         ...postData,
-        image: image,
+        images: [...postData?.images],
         caption: caption,
       });
     }

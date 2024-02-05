@@ -7,11 +7,15 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {UserDataType} from '../../utils/userData';
 import {Box, Text} from '@gluestack-ui/themed';
 import BottomSheet from './BottomSheet';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
 
 const screenWidth = Dimensions.get('window').width;
 
 const Post = ({postData}: {postData: UserDataType}) => {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [liked, setLiked] = useState(false);
+
   const toggleModal = () => {
     setShowModal(prev => !prev);
   };
@@ -42,7 +46,31 @@ const Post = ({postData}: {postData: UserDataType}) => {
           </TouchableOpacity>
         </Box>
         <Box>
-          <Image
+          <Carousel
+            data={postData.post.images}
+            renderItem={({item, index}) => {
+              return (
+                <Image
+                  style={styles.postImage}
+                  source={typeof item === 'string' ? {uri: item} : item}
+                  alt="post"
+                />
+              );
+            }}
+            sliderWidth={screenWidth}
+            itemWidth={screenWidth}
+            onSnapToItem={index => setActiveSlide(index)}
+          />
+          <Pagination
+            dotsLength={postData.post.images.length}
+            activeDotIndex={activeSlide}
+            containerStyle={styles.paginationContainer}
+            dotStyle={styles.dotStyle}
+            inactiveDotStyle={styles.inactiveDotStyle}
+            inactiveDotOpacity={0.6}
+            inactiveDotScale={0.8}
+          />
+          {/* <Image
             style={styles.postImage}
             source={
               typeof postData.post[0].image === 'string'
@@ -50,7 +78,7 @@ const Post = ({postData}: {postData: UserDataType}) => {
                 : postData.post[0].image
             }
             alt="post"
-          />
+          /> */}
         </Box>
         <Box
           flexDirection="row"
@@ -59,8 +87,11 @@ const Post = ({postData}: {postData: UserDataType}) => {
           w="$2/6"
           justifyContent="space-around"
           h="$8">
-          <TouchableOpacity>
-            <AntDesign name="hearto" style={styles.iconButton} />
+          <TouchableOpacity onPress={() => setLiked(prev => !prev)}>
+            <AntDesign
+              name={liked ? 'heart' : 'hearto'}
+              style={{fontSize: 24, color: liked ? 'red' : 'black'}}
+            />
           </TouchableOpacity>
           <TouchableOpacity>
             <Octicons name="comment" style={styles.iconButton} />
@@ -75,13 +106,13 @@ const Post = ({postData}: {postData: UserDataType}) => {
           fontSize="$md"
           color="$black"
           fontWeight="$semibold">
-          {postData.post[0].like} likes
+          {postData.post.like} likes
         </Text>
         <Box flexDirection="row" paddingHorizontal="$3" alignItems="center">
           <Text fontWeight="$semibold" color="$textDark800">
             {postData.username}{' '}
           </Text>
-          <Text color="$textDark800">{postData.post[0].caption}</Text>
+          <Text color="$textDark800">{postData.post.caption}</Text>
         </Box>
       </Box>
 
@@ -104,4 +135,16 @@ const styles = StyleSheet.create({
     objectFit: 'contain',
   },
   iconButton: {fontSize: 24},
+  paginationContainer: {
+    marginTop: -20,
+  },
+  dotStyle: {
+    width: 8,
+    height: 8,
+    borderRadius: 5,
+    backgroundColor: '#4688ef',
+  },
+  inactiveDotStyle: {
+    backgroundColor: 'gray',
+  },
 });

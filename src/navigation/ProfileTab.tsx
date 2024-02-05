@@ -1,29 +1,37 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
 import React, {useContext} from 'react';
-import {FlatList, Image} from 'react-native';
+import {FlatList, Image, Pressable} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {Box, Text} from '@gluestack-ui/themed';
 import PostContext from '../context/PostContext';
 import {UserDataType} from '../utils/userData';
+import {useNavigation} from '@react-navigation/native';
 export const ProfileTabs = () => {
   const Tab = createMaterialTopTabNavigator();
   const {state} = useContext(PostContext);
   const postData: UserDataType[] = [...state.posts];
+  const navigation = useNavigation();
 
-  const renderItem = item => {
+  const renderItem = ({item, index}) => {
     return (
-      <Box>
+      <Pressable
+        onPress={() => {
+          navigation.navigate('ProfilePostList', {
+            postId: item.id,
+            postIndex: index,
+          });
+        }}>
         <Image
           style={{height: 130.9, width: 130.9}}
           source={
-            typeof item.item.post[0].image === 'string'
-              ? {uri: item.item.post[0].image}
-              : item.item.post[0].image
+            typeof item.post.images[0] === 'string'
+              ? {uri: item.post.images[0]}
+              : item.post.images[0]
           }
         />
-      </Box>
+      </Pressable>
     );
   };
   const Posts = () => {

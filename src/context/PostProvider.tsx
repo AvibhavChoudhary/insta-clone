@@ -14,7 +14,7 @@ const postReducer = (state, action) => {
     case 'UPDATE_POST':
       const updatedPosts = state.posts.map(post =>
         post.id === action.payload.id
-          ? {...post, post: [{...action.payload.data}]}
+          ? {...post, post: {...action.payload.data}}
           : post,
       );
       console.log('updated post-->', updatedPosts, action.payload);
