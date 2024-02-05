@@ -36,7 +36,7 @@ const BottomSheet = ({showModal, toggleModal, postData}: BottomSheetProps) => {
   };
 
   const handleDelete = () => {
-    // removePost(postToDelete);
+    removePost(postToDelete);
     closeDialog();
     toggleModal();
     showToastMessage({
@@ -91,7 +91,7 @@ const BottomSheet = ({showModal, toggleModal, postData}: BottomSheetProps) => {
                 onPress={() => {
                   if (name === 'Edit') {
                     navigation.navigate('AddPost', {
-                      postData: postData.post[0],
+                      postData: postData.post,
                       postId: postData.id,
                     });
                     toggleModal();

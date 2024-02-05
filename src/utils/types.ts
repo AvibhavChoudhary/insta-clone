@@ -40,7 +40,7 @@ export type StoryType = {
 export type PostType = {
   time: string;
   date: string;
-  image: any;
+  images: any[];
   caption: string;
   like: number;
 };
@@ -69,4 +69,13 @@ export type ToastProps = {
     | 'bottom'
     | 'bottom left'
     | 'bottom right';
+};
+
+export type ChatItemType = {
+  id: number;
+  name: string;
+  message: string;
+  time: number;
+  avatar: any;
+  unread: boolean;
 };

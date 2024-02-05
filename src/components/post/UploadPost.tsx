@@ -44,7 +44,7 @@ const UploadPost = ({
       </Pressable>
       <Image
         style={{height: 300, width: 300, borderRadius: 10}}
-        source={imageUri}
+        source={typeof imageUri === 'string' ? {uri: imageUri} : imageUri}
         alt="Uploaded image"
       />
 
