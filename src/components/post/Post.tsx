@@ -42,7 +42,15 @@ const Post = ({postData}: {postData: UserDataType}) => {
           </TouchableOpacity>
         </Box>
         <Box>
-          <Image style={styles.postImage} source={postData.post.image} />
+          <Image
+            style={styles.postImage}
+            source={
+              typeof postData.post[0].image === 'string'
+                ? {uri: postData.post[0].image}
+                : postData.post[0].image
+            }
+            alt="post"
+          />
         </Box>
         <Box
           flexDirection="row"
@@ -67,17 +75,21 @@ const Post = ({postData}: {postData: UserDataType}) => {
           fontSize="$md"
           color="$black"
           fontWeight="$semibold">
-          {postData.post.like} likes
+          {postData.post[0].like} likes
         </Text>
         <Box flexDirection="row" paddingHorizontal="$3" alignItems="center">
           <Text fontWeight="$semibold" color="$textDark800">
             {postData.username}{' '}
           </Text>
-          <Text color="$textDark800">{postData.post.caption}</Text>
+          <Text color="$textDark800">{postData.post[0].caption}</Text>
         </Box>
       </Box>
 
-      <BottomSheet showModal={showModal} toggleModal={toggleModal} />
+      <BottomSheet
+        showModal={showModal}
+        toggleModal={toggleModal}
+        postData={postData}
+      />
     </Box>
   );
 };

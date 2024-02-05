@@ -1,3 +1,5 @@
+import {UserDataType} from './userData';
+
 export type Error = {
   show: boolean;
   message: string;
@@ -14,6 +16,7 @@ export type InputProps = {
 export type BottomSheetProps = {
   showModal: boolean;
   toggleModal: () => void;
+  postData: UserDataType;
 };
 
 export type SheetItemType = {
@@ -24,4 +27,46 @@ export type SheetItemType = {
 export type UploadPostProps = {
   imageUri: string;
   toggleButtons: () => void;
+  isEdit?: boolean;
+  caption?: string;
+  onShare: () => void;
+};
+
+export type StoryType = {
+  time: number;
+  image: any;
+};
+
+export type PostType = {
+  time: string;
+  date: string;
+  image: any;
+  caption: string;
+  like: number;
+};
+
+export type DeleteDialogProps = {
+  showAlert: boolean;
+  closeDialog: () => void;
+  title: string;
+  subTitle: string;
+  onCancel: () => void;
+  onConfirm: () => void;
+  confirmButtonText: string;
+  cancelButtonText: string;
+};
+
+export type ToastProps = {
+  toastRef: any;
+  title: string;
+  description: string;
+  variant: 'accent' | 'outline' | 'solid' | undefined;
+  action: 'error' | 'warning' | 'success' | 'info' | 'attention' | undefined;
+  placement:
+    | 'top'
+    | 'top right'
+    | 'top left'
+    | 'bottom'
+    | 'bottom left'
+    | 'bottom right';
 };

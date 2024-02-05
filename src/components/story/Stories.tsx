@@ -12,14 +12,16 @@ import {useNavigation} from '@react-navigation/native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {UserData, UserDataType} from '../../utils/userData';
 
-const Stories = ({storiesData}) => {
+const Stories = ({storiesData}: {storiesData: UserDataType[]}) => {
   const navigation = useNavigation();
   const postData: UserDataType[] = [...UserData];
   return (
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
       <TouchableOpacity
         key={postData[0].id}
-        onPress={() => navigation.navigate('Story', {item})}>
+
+        // onPress={() => navigation.navigate('Story', {item})}
+      >
         <View
           style={{
             flexDirection: 'column',
@@ -32,16 +34,24 @@ const Stories = ({storiesData}) => {
             </View>
           ) : null}
           <View style={styles.imageContainer}>
-            <Image style={styles.image} source={postData[0].story.image} />
+            <Image style={styles.image} source={postData[0].story[0].image} />
           </View>
           <Text style={styles.userName}>{storiesData[0].username}</Text>
         </View>
       </TouchableOpacity>
-      {storiesData.slice(1).map((item, index) => {
+      {storiesData.slice(1).map((item: UserDataType, index) => {
+        if (!item.story.length) {
+          return;
+        }
         return !(item.id === 1) ? (
           <TouchableOpacity
             key={index}
-            onPress={() => navigation.navigate('Story', {item})}>
+            onPress={() =>
+              navigation.navigate('Story', {
+                stories: storiesData,
+                userIndex: index + 1,
+              })
+            }>
             <View
               style={{
                 flexDirection: 'column',
@@ -49,7 +59,7 @@ const Stories = ({storiesData}) => {
                 height: 100,
               }}>
               <View style={styles.imageContainer}>
-                <Image style={styles.image} source={item.story.image} />
+                <Image style={styles.image} source={item.story[0].image} />
               </View>
               <Text style={styles.userName}>{item.username}</Text>
             </View>
