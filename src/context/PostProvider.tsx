@@ -17,7 +17,6 @@ const postReducer = (state, action) => {
           ? {...post, post: {...action.payload.data}}
           : post,
       );
-      console.log('updated post-->', updatedPosts, action.payload);
       return {...state, posts: updatedPosts};
 
     case 'REMOVE_POST':

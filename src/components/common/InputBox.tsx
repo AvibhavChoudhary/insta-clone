@@ -1,6 +1,6 @@
 import {StyleSheet, TextInput} from 'react-native';
 import React from 'react';
-import {InputProps} from '../utils/types';
+import {InputProps} from '../../utils/types';
 import {Box, Text} from '@gluestack-ui/themed';
 
 const InputBox = ({

@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, TouchableOpacity, View, Image} from 'react-native';
 import React, {useState} from 'react';
-import InputBox from '../components/InputBox';
-import CustomButton from '../components/CustomButton';
+import InputBox from '../components/common/InputBox';
+import CustomButton from '../components/common/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 import {Box, Text} from '@gluestack-ui/themed';
 import {Error} from '../utils/types';
@@ -40,7 +40,7 @@ const Login = () => {
 
         <Box>
           <InputBox
-            placeholder={'Username, email address or mobile number'}
+            placeholder={'Enter username here'}
             onChangeText={e => setUsername(e)}
             value={username}
             showError={error.show}

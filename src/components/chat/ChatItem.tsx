@@ -1,7 +1,6 @@
 import {
   HStack,
   Avatar,
-  AvatarFallbackText,
   AvatarImage,
   Text,
   VStack,
@@ -16,14 +15,12 @@ type ChatPorps = {
 };
 
 const ChatItem = ({chatData}: ChatPorps) => {
-  console.log('chat-->', chatData);
   return (
     <HStack space="md" p="$3" alignItems="center" paddingHorizontal="$2">
       <Avatar size="lg">
-        {/* <AvatarFallbackText>SS</AvatarFallbackText> */}
         <AvatarImage source={chatData.avatar} alt="avatar" />
       </Avatar>
-      <HStack flex={1} alginItems="center" justifyContent="space-between">
+      <HStack flex={1} alignItems="center" justifyContent="space-between">
         <VStack>
           <Text size="md" fontWeight={chatData.unread ? '$bold' : '$semibold'}>
             {chatData.name}

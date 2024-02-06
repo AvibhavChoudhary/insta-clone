@@ -1,6 +1,6 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {AppColors} from '../utils/colors';
+import {AppColors} from '../../utils/colors';
 
 const CustomButton = ({buttonTitle, onPress, disabled}) => {
   return (

@@ -19,21 +19,19 @@ const BottomNavigation = () => {
         tabBarStyle: {
           height: 50,
         },
-        tabBarIcon: ({focused, size, color}) => {
+        tabBarIcon: ({focused, size}) => {
           let iconName;
           if (route.name === 'Home') {
             iconName = focused ? 'home-sharp' : 'home-outline';
-            size = focused ? size + 8 : size + 2;
           } else if (route.name === 'Search') {
             iconName = focused ? 'search' : 'search-outline';
           } else if (route.name === 'AddPost') {
             iconName = focused ? 'add-circle' : 'add-outline';
-          } else if (route.name === 'Activity') {
-            iconName = focused ? 'heart' : 'heart-outline';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'person-circle' : 'person-outline';
           }
-          return <Ionic name={iconName} size={size} color={color} />;
+          size = focused ? size + 4 : size + 2;
+          return <Ionic name={iconName} size={size} color="black" />;
         },
       })}>
       <Tab.Screen name="Home" component={Home} />

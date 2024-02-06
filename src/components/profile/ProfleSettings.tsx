@@ -8,6 +8,7 @@ import {
   ActionsheetDragIndicatorWrapper,
   ActionsheetItem,
   ActionsheetItemText,
+  ScrollView,
 } from '@gluestack-ui/themed';
 import {PROFILE_SETTINGS_LIST} from '../../utils/helpers';
 import {BottomSheetProps, SheetItemType} from '../../utils/types';
@@ -26,23 +27,24 @@ const ProfileSettings = ({showModal, toggleModal}: BottomSheetProps) => {
         <ActionsheetDragIndicatorWrapper>
           <ActionsheetDragIndicator />
         </ActionsheetDragIndicatorWrapper>
-
-        {PROFILE_SETTINGS_LIST.map(({name, iconName}: SheetItemType) => {
-          return (
-            <ActionsheetItem
-              key={name}
-              onPress={() => {
-                if (name === 'Logout') {
-                  handleLogout();
-                }
-              }}>
-              {iconName()}
-              <ActionsheetItemText ml="$2.5" size="md" color="black">
-                {name}
-              </ActionsheetItemText>
-            </ActionsheetItem>
-          );
-        })}
+        <ScrollView flex={1} w="$full" showsVerticalScrollIndicator={false}>
+          {PROFILE_SETTINGS_LIST.map(({name, iconName}: SheetItemType) => {
+            return (
+              <ActionsheetItem
+                key={name}
+                onPress={() => {
+                  if (name === 'Logout') {
+                    handleLogout();
+                  }
+                }}>
+                {iconName()}
+                <ActionsheetItemText ml="$2.5" size="md" color="black">
+                  {name}
+                </ActionsheetItemText>
+              </ActionsheetItem>
+            );
+          })}
+        </ScrollView>
       </ActionsheetContent>
     </Actionsheet>
   );

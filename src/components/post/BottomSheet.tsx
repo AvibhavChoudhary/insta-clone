@@ -20,7 +20,7 @@ import {
 } from '../../utils/helpers';
 import {BottomSheetProps, SheetItemType} from '../../utils/types';
 import {useNavigation} from '@react-navigation/native';
-import DeleteAlert from '../DeleteAlert';
+import DeleteAlert from '../common/DeleteAlert';
 import PostContext from '../../context/PostContext';
 
 const BottomSheet = ({showModal, toggleModal, postData}: BottomSheetProps) => {
@@ -85,6 +85,9 @@ const BottomSheet = ({showModal, toggleModal, postData}: BottomSheetProps) => {
         </HStack>
         <ScrollView w="$full" showsVerticalScrollIndicator={false}>
           {SHEET_LIST_ITEMS.map(({name, iconName}: SheetItemType) => {
+            if (!postData.self && (name === 'Edit' || name === 'Delete')) {
+              return;
+            }
             return (
               <ActionsheetItem
                 key={name}

@@ -86,6 +86,7 @@ const AddPost = ({route}) => {
         id: 100 + state.posts.length,
         name: 'Avi Choudhary',
         username: 'avichoudhary',
+        self: true,
         profile: require('../../assets/self-avatar.jpg'),
         story: [],
         post: {
