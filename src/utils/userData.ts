@@ -4,6 +4,7 @@ export type UserDataType = {
   id: number;
   name: string;
   username: string;
+  self: boolean;
   profile: any;
   story: StoryType[];
   post: PostType;
@@ -11,9 +12,10 @@ export type UserDataType = {
 export const UserData: UserDataType[] = [
   {
     id: 1,
-    name: 'Rajeev Roy',
+    name: 'Avi Choudhary',
+    self: true,
     username: 'Your story',
-    profile: require('../../assets/data/user1.jpeg'),
+    profile: require('../../assets/self-avatar.jpg'),
     story: [
       {
         time: 10,
@@ -44,6 +46,7 @@ export const UserData: UserDataType[] = [
     id: 2,
     name: 'Harsh Kumar',
     username: 'harsh',
+    self: false,
     profile: require('../../assets/data/user2.jpeg'),
     story: [
       {
@@ -69,9 +72,10 @@ export const UserData: UserDataType[] = [
   },
   {
     id: 3,
-    name: 'Rohini Patel',
-    username: 'rohinipatel',
-    profile: require('../../assets/data/user3.jpeg'),
+    name: 'Avi Choudhary',
+    username: 'avichoudhary',
+    self: true,
+    profile: require('../../assets/self-avatar.jpg'),
     story: [
       {
         time: 15,
@@ -102,6 +106,7 @@ export const UserData: UserDataType[] = [
     id: 4,
     name: 'Amit Kumar',
     username: 'amit112',
+    self: false,
     profile: require('../../assets/data/user4.jpeg'),
     story: [
       {
@@ -123,8 +128,425 @@ export const UserData: UserDataType[] = [
   },
   {
     id: 5,
+    name: 'Avi Choudhary',
+    username: 'avichoudhary',
+    self: true,
+    profile: require('../../assets/self-avatar.jpg'),
+    story: [
+      {
+        time: 13,
+        image: require('../../assets/data/user5.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [require('../../assets/data/road1.jpeg')],
+      caption: 'No edit, No touch ups...',
+      like: 88,
+    },
+  },
+  {
+    id: 12,
+    name: 'Harsh Kumar',
+    username: 'harsh',
+    self: false,
+    profile: require('../../assets/data/user2.jpeg'),
+    story: [
+      {
+        time: 8,
+        image: require('../../assets/data/user2.jpeg'),
+      },
+      {
+        time: 10,
+        image: require('../../assets/data/user1.jpeg'),
+      },
+    ],
+    post: {
+      time: '04:00 PM',
+      date: '08/04/2023',
+      images: [
+        require('../../assets/data/creata1.png'),
+        require('../../assets/data/creata2.webp'),
+        require('../../assets/data/creata3.png'),
+      ],
+      caption: 'Mountains are love',
+      like: 25,
+    },
+  },
+  {
+    id: 13,
+    name: 'Avi Choudhary',
+    username: 'avichoudhary',
+    self: true,
+    profile: require('../../assets/self-avatar.jpg'),
+    story: [
+      {
+        time: 15,
+        image: require('../../assets/data/user3.jpeg'),
+      },
+      {
+        time: 8,
+        image: require('../../assets/data/user2.jpeg'),
+      },
+      {
+        time: 10,
+        image: require('../../assets/data/user1.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [
+        require('../../assets/data/mountain1.jpeg'),
+        require('../../assets/data/mountain2.jpeg'),
+        require('../../assets/data/mountain3.jpeg'),
+      ],
+      caption: 'A memorable time',
+      like: 99,
+    },
+  },
+  {
+    id: 14,
+    name: 'Avi Choudhary',
+    username: 'avichoudhary',
+    self: true,
+    profile: require('../../assets/self-avatar.jpg'),
+    story: [
+      {
+        time: 13,
+        image: require('../../assets/data/user4.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [
+        require('../../assets/data/gt650.jpeg'),
+        require('../../assets/data/gt650-1.jpeg'),
+        require('../../assets/data/gt650-2.jpeg'),
+      ],
+      caption: 'No edit, No touch ups...',
+      like: 88,
+    },
+  },
+  {
+    id: 15,
+    name: 'Avi Choudhary',
+    username: 'avichoudhary',
+    self: true,
+    profile: require('../../assets/self-avatar.jpg'),
+    story: [
+      {
+        time: 13,
+        image: require('../../assets/data/user5.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [require('../../assets/data/road1.jpeg')],
+      caption: 'No edit, No touch ups...',
+      like: 88,
+    },
+  },
+  {
+    id: 22,
+    name: 'Harsh Kumar',
+    username: 'harsh',
+    self: false,
+    profile: require('../../assets/data/user2.jpeg'),
+    story: [
+      {
+        time: 8,
+        image: require('../../assets/data/user2.jpeg'),
+      },
+      {
+        time: 10,
+        image: require('../../assets/data/user1.jpeg'),
+      },
+    ],
+    post: {
+      time: '04:00 PM',
+      date: '08/04/2023',
+      images: [
+        require('../../assets/data/creata1.png'),
+        require('../../assets/data/creata2.webp'),
+        require('../../assets/data/creata3.png'),
+      ],
+      caption: 'Mountains are love',
+      like: 25,
+    },
+  },
+  {
+    id: 23,
+    name: 'Avi Choudhary',
+    username: 'avichoudhary',
+    self: true,
+    profile: require('../../assets/self-avatar.jpg'),
+    story: [
+      {
+        time: 15,
+        image: require('../../assets/data/user3.jpeg'),
+      },
+      {
+        time: 8,
+        image: require('../../assets/data/user2.jpeg'),
+      },
+      {
+        time: 10,
+        image: require('../../assets/data/user1.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [
+        require('../../assets/data/mountain1.jpeg'),
+        require('../../assets/data/mountain2.jpeg'),
+        require('../../assets/data/mountain3.jpeg'),
+      ],
+      caption: 'A memorable time',
+      like: 99,
+    },
+  },
+  {
+    id: 24,
+    name: 'Amit Kumar',
+    username: 'amit112',
+    self: false,
+    profile: require('../../assets/data/user4.jpeg'),
+    story: [
+      {
+        time: 13,
+        image: require('../../assets/data/user4.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [
+        require('../../assets/data/gt650.jpeg'),
+        require('../../assets/data/gt650-1.jpeg'),
+        require('../../assets/data/gt650-2.jpeg'),
+      ],
+      caption: 'No edit, No touch ups...',
+      like: 88,
+    },
+  },
+  {
+    id: 25,
     name: 'Ankita Choudhary',
     username: 'ankita',
+    self: false,
+    profile: require('../../assets/data/user5.jpeg'),
+    story: [
+      {
+        time: 13,
+        image: require('../../assets/data/user5.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [require('../../assets/data/road1.jpeg')],
+      caption: 'No edit, No touch ups...',
+      like: 88,
+    },
+  },
+  {
+    id: 32,
+    name: 'Harsh Kumar',
+    username: 'harsh',
+    self: false,
+    profile: require('../../assets/data/user2.jpeg'),
+    story: [
+      {
+        time: 8,
+        image: require('../../assets/data/user2.jpeg'),
+      },
+      {
+        time: 10,
+        image: require('../../assets/data/user1.jpeg'),
+      },
+    ],
+    post: {
+      time: '04:00 PM',
+      date: '08/04/2023',
+      images: [
+        require('../../assets/data/creata1.png'),
+        require('../../assets/data/creata2.webp'),
+        require('../../assets/data/creata3.png'),
+      ],
+      caption: 'Mountains are love',
+      like: 25,
+    },
+  },
+  {
+    id: 33,
+    name: 'Rohini Patel',
+    username: 'rohinipatel',
+    self: false,
+    profile: require('../../assets/data/user3.jpeg'),
+    story: [
+      {
+        time: 15,
+        image: require('../../assets/data/user3.jpeg'),
+      },
+      {
+        time: 8,
+        image: require('../../assets/data/user2.jpeg'),
+      },
+      {
+        time: 10,
+        image: require('../../assets/data/user1.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [
+        require('../../assets/data/mountain1.jpeg'),
+        require('../../assets/data/mountain2.jpeg'),
+        require('../../assets/data/mountain3.jpeg'),
+      ],
+      caption: 'A memorable time',
+      like: 99,
+    },
+  },
+  {
+    id: 34,
+    name: 'Amit Kumar',
+    username: 'amit112',
+    self: false,
+    profile: require('../../assets/data/user4.jpeg'),
+    story: [
+      {
+        time: 13,
+        image: require('../../assets/data/user4.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [
+        require('../../assets/data/gt650.jpeg'),
+        require('../../assets/data/gt650-1.jpeg'),
+        require('../../assets/data/gt650-2.jpeg'),
+      ],
+      caption: 'No edit, No touch ups...',
+      like: 88,
+    },
+  },
+  {
+    id: 35,
+    name: 'Ankita Choudhary',
+    username: 'ankita',
+    self: false,
+    profile: require('../../assets/data/user5.jpeg'),
+    story: [
+      {
+        time: 13,
+        image: require('../../assets/data/user5.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [require('../../assets/data/road1.jpeg')],
+      caption: 'No edit, No touch ups...',
+      like: 88,
+    },
+  },
+  {
+    id: 42,
+    name: 'Avi Choudhary',
+    username: 'avichoudhary',
+    self: true,
+    profile: require('../../assets/self-avatar.jpg'),
+    story: [
+      {
+        time: 8,
+        image: require('../../assets/data/user2.jpeg'),
+      },
+      {
+        time: 10,
+        image: require('../../assets/data/user1.jpeg'),
+      },
+    ],
+    post: {
+      time: '04:00 PM',
+      date: '08/04/2023',
+      images: [
+        require('../../assets/data/creata1.png'),
+        require('../../assets/data/creata2.webp'),
+        require('../../assets/data/creata3.png'),
+      ],
+      caption: 'Mountains are love',
+      like: 25,
+    },
+  },
+  {
+    id: 43,
+    name: 'Rohini Patel',
+    username: 'rohinipatel',
+    self: false,
+    profile: require('../../assets/data/user3.jpeg'),
+    story: [
+      {
+        time: 15,
+        image: require('../../assets/data/user3.jpeg'),
+      },
+      {
+        time: 8,
+        image: require('../../assets/data/user2.jpeg'),
+      },
+      {
+        time: 10,
+        image: require('../../assets/data/user1.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [
+        require('../../assets/data/mountain1.jpeg'),
+        require('../../assets/data/mountain2.jpeg'),
+        require('../../assets/data/mountain3.jpeg'),
+      ],
+      caption: 'A memorable time',
+      like: 99,
+    },
+  },
+  {
+    id: 44,
+    name: 'Amit Kumar',
+    username: 'amit112',
+    self: false,
+    profile: require('../../assets/data/user4.jpeg'),
+    story: [
+      {
+        time: 13,
+        image: require('../../assets/data/user4.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [
+        require('../../assets/data/gt650.jpeg'),
+        require('../../assets/data/gt650-1.jpeg'),
+        require('../../assets/data/gt650-2.jpeg'),
+      ],
+      caption: 'No edit, No touch ups...',
+      like: 88,
+    },
+  },
+  {
+    id: 45,
+    name: 'Ankita Choudhary',
+    username: 'ankita',
+    self: false,
     profile: require('../../assets/data/user5.jpeg'),
     story: [
       {

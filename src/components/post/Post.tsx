@@ -70,15 +70,6 @@ const Post = ({postData}: {postData: UserDataType}) => {
             inactiveDotOpacity={0.6}
             inactiveDotScale={0.8}
           />
-          {/* <Image
-            style={styles.postImage}
-            source={
-              typeof postData.post[0].image === 'string'
-                ? {uri: postData.post[0].image}
-                : postData.post[0].image
-            }
-            alt="post"
-          /> */}
         </Box>
         <Box
           flexDirection="row"
@@ -100,14 +91,16 @@ const Post = ({postData}: {postData: UserDataType}) => {
             <Feather name="send" style={styles.iconButton} />
           </TouchableOpacity>
         </Box>
-        <Text
-          ml="$3"
-          mt="$1"
-          fontSize="$md"
-          color="$black"
-          fontWeight="$semibold">
-          {postData.post.like} likes
-        </Text>
+        {(liked ? postData.post.like + 1 : postData.post.like) > 0 && (
+          <Text
+            ml="$3"
+            mt="$1"
+            fontSize="$md"
+            color="$black"
+            fontWeight="$semibold">
+            {liked ? postData.post.like + 1 : postData.post.like} likes
+          </Text>
+        )}
         <Box flexDirection="row" paddingHorizontal="$3" alignItems="center">
           <Text fontWeight="$semibold" color="$textDark800">
             {postData.username}{' '}

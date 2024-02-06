@@ -11,7 +11,7 @@ import {useNavigation} from '@react-navigation/native';
 export const ProfileTabs = () => {
   const Tab = createMaterialTopTabNavigator();
   const {state} = useContext(PostContext);
-  const postData: UserDataType[] = [...state.posts];
+  const postData: UserDataType[] = state.posts.filter(post => post.self);
   const navigation = useNavigation();
 
   const renderItem = ({item, index}) => {

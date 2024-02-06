@@ -12,7 +12,7 @@ const Header = () => {
       <View>
         <Image
           style={styles.logoImage}
-          source={require('../../assets/images/Instagram-logo.png')}
+          source={require('../../../assets/images/Instagram-logo.png')}
         />
       </View>
       <View style={{flexDirection: 'row'}}>
