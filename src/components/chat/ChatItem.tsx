@@ -26,7 +26,7 @@ const ChatItem = ({chatData}: ChatPorps) => {
             {chatData.name}
           </Text>
           <HStack>
-            <Text size="sm" fontWeight={chatData.unread ? '$bold' : '$noraml'}>
+            <Text size="sm" fontWeight={chatData.unread ? '$bold' : '$normal'}>
               {chatData.message}
             </Text>
             <Text size="xs" ml="$2">

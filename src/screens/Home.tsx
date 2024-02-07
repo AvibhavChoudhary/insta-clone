@@ -18,7 +18,7 @@ import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
 const Home = () => {
   const {state} = useContext(PostContext);
-  const postData: UserDataType[] = [...state.posts.slice(0, 7)];
+  const postData: UserDataType[] = [...state.posts.slice(0, 10)];
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [displayedItems, setDisplayedItems] = useState(0);
@@ -48,7 +48,7 @@ const Home = () => {
     const timer = setTimeout(() => {
       setPostItems([
         ...postItems,
-        ...state.posts.slice(postItems.length + 1, postItems.length + 7),
+        ...state.posts.slice(postItems.length + 1, postItems.length + 5),
       ]);
       setLoading(false);
       clearTimeout(timer);

@@ -148,14 +148,43 @@ export const UserData: UserDataType[] = [
   },
   {
     id: 12,
-    name: 'Harsh Kumar',
+    name: 'Rajat Kumar',
+    username: 'harsh',
+    self: false,
+    profile: require('../../assets/data/user4.jpeg'),
+    story: [
+      {
+        time: 8,
+        image: require('../../assets/data/user5.jpeg'),
+      },
+      {
+        time: 10,
+        image: require('../../assets/data/user1.jpeg'),
+      },
+    ],
+    post: {
+      time: '04:00 PM',
+      date: '08/04/2023',
+      images: [
+        require('../../assets/data/creata1.png'),
+        require('../../assets/data/creata2.webp'),
+        require('../../assets/data/creata3.png'),
+      ],
+      caption: 'Mountains are love',
+      like: 25,
+    },
+  },
+
+  {
+    id: 22,
+    name: 'Ashish Kumar',
     username: 'harsh',
     self: false,
     profile: require('../../assets/data/user2.jpeg'),
     story: [
       {
         time: 8,
-        image: require('../../assets/data/user2.jpeg'),
+        image: require('../../assets/data/user8.jpeg'),
       },
       {
         time: 10,
@@ -175,91 +204,15 @@ export const UserData: UserDataType[] = [
     },
   },
   {
-    id: 13,
-    name: 'Avi Choudhary',
-    username: 'avichoudhary',
-    self: true,
-    profile: require('../../assets/self-avatar.jpg'),
-    story: [
-      {
-        time: 15,
-        image: require('../../assets/data/user3.jpeg'),
-      },
-      {
-        time: 8,
-        image: require('../../assets/data/user2.jpeg'),
-      },
-      {
-        time: 10,
-        image: require('../../assets/data/user1.jpeg'),
-      },
-    ],
-    post: {
-      time: '07:00 AM',
-      date: '12/05/2023',
-      images: [
-        require('../../assets/data/mountain1.jpeg'),
-        require('../../assets/data/mountain2.jpeg'),
-        require('../../assets/data/mountain3.jpeg'),
-      ],
-      caption: 'A memorable time',
-      like: 99,
-    },
-  },
-  {
-    id: 14,
-    name: 'Avi Choudhary',
-    username: 'avichoudhary',
-    self: true,
-    profile: require('../../assets/self-avatar.jpg'),
-    story: [
-      {
-        time: 13,
-        image: require('../../assets/data/user4.jpeg'),
-      },
-    ],
-    post: {
-      time: '07:00 AM',
-      date: '12/05/2023',
-      images: [
-        require('../../assets/data/gt650.jpeg'),
-        require('../../assets/data/gt650-1.jpeg'),
-        require('../../assets/data/gt650-2.jpeg'),
-      ],
-      caption: 'No edit, No touch ups...',
-      like: 88,
-    },
-  },
-  {
-    id: 15,
-    name: 'Avi Choudhary',
-    username: 'avichoudhary',
-    self: true,
-    profile: require('../../assets/self-avatar.jpg'),
-    story: [
-      {
-        time: 13,
-        image: require('../../assets/data/user5.jpeg'),
-      },
-    ],
-    post: {
-      time: '07:00 AM',
-      date: '12/05/2023',
-      images: [require('../../assets/data/road1.jpeg')],
-      caption: 'No edit, No touch ups...',
-      like: 88,
-    },
-  },
-  {
-    id: 22,
-    name: 'Harsh Kumar',
+    id: 87,
+    name: 'Atul Kumar',
     username: 'harsh',
     self: false,
-    profile: require('../../assets/data/user2.jpeg'),
+    profile: require('../../assets/data/user4.jpeg'),
     story: [
       {
         time: 8,
-        image: require('../../assets/data/user2.jpeg'),
+        image: require('../../assets/data/user3.jpeg'),
       },
       {
         time: 10,
@@ -308,6 +261,82 @@ export const UserData: UserDataType[] = [
       ],
       caption: 'A memorable time',
       like: 99,
+    },
+  },
+  {
+    id: 88,
+    name: 'Avi Choudhary',
+    username: 'avichoudhary',
+    self: true,
+    profile: require('../../assets/self-avatar.jpg'),
+    story: [
+      {
+        time: 15,
+        image: require('../../assets/data/user3.jpeg'),
+      },
+      {
+        time: 8,
+        image: require('../../assets/data/user2.jpeg'),
+      },
+      {
+        time: 10,
+        image: require('../../assets/data/user1.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [
+        require('../../assets/data/mountain1.jpeg'),
+        require('../../assets/data/mountain2.jpeg'),
+        require('../../assets/data/mountain3.jpeg'),
+      ],
+      caption: 'A memorable time',
+      like: 99,
+    },
+  },
+  {
+    id: 89,
+    name: 'Avi Choudhary',
+    username: 'avichoudhary',
+    self: true,
+    profile: require('../../assets/self-avatar.jpg'),
+    story: [
+      {
+        time: 13,
+        image: require('../../assets/data/user4.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [
+        require('../../assets/data/gt650.jpeg'),
+        require('../../assets/data/gt650-1.jpeg'),
+        require('../../assets/data/gt650-2.jpeg'),
+      ],
+      caption: 'No edit, No touch ups...',
+      like: 88,
+    },
+  },
+  {
+    id: 90,
+    name: 'Avi Choudhary',
+    username: 'avichoudhary',
+    self: true,
+    profile: require('../../assets/self-avatar.jpg'),
+    story: [
+      {
+        time: 13,
+        image: require('../../assets/data/user5.jpeg'),
+      },
+    ],
+    post: {
+      time: '07:00 AM',
+      date: '12/05/2023',
+      images: [require('../../assets/data/road1.jpeg')],
+      caption: 'No edit, No touch ups...',
+      like: 88,
     },
   },
   {
