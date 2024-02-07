@@ -43,6 +43,9 @@ const Stories = ({storiesData}: {storiesData: UserDataType[]}) => {
         if (!item.story.length) {
           return;
         }
+        if (item.self) {
+          return;
+        }
         return !(item.id === 1) ? (
           <TouchableOpacity
             key={index}
